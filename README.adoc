@@ -3,4 +3,4 @@
 This policy, call the instrospection policy, take the result, convert to JWT and put it in the context.
 It allows you to play with others builtin policies like Claim Check.
 
-image::imgs/3scale-policies.jpg[]
+image::imgs/policy-flow.jpg[]
