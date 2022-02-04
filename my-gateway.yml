@@ -20,4 +20,4 @@ spec:
     - name: JWE Token Instrospection
       version: "0.1"
       secretRef:
-        name: jwe-token-instrospection
+        name: jwe-token-introspection

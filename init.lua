@@ -1,1 +1,1 @@
-return require('jwe-token-instrospection')
+return require('jwe-token-introspection')
