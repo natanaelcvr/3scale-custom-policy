@@ -1,0 +1,23 @@
+apiVersion: apps.3scale.net/v1alpha1
+kind: APIcast
+metadata:
+  name: my-gateway
+spec:
+  adminPortalCredentialsRef:
+    name: 3scaleportal
+  cacheConfigurationSeconds: 0
+  configurationLoadMode: lazy
+  responseCodesIncluded: true
+  logLevel: info
+  oidcLogLevel: info
+  extendedMetrics: true
+  deploymentEnvironment: staging
+  exposedHost:
+    host: api-3scale-apicast-gateway.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com
+    tls:
+    - {}
+  customPolicies:
+    - name: JWE Token Instrospection
+      version: "0.1"
+      secretRef:
+        name: jwe-token-instrospection
