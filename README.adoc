@@ -4,3 +4,26 @@ This policy, call the instrospection policy, take the result, convert to JWT and
 It allows you to play with others builtin policies like Claim Check.
 
 image::imgs/policy-flow.jpg[]
+
+== Policy Deployment
+
+oc create secret generic jwe-token-introspection \
+    --from-file=./apicast-policy.json \
+    --from-file=./init.lua \
+    --from-file=./jwe-token-introspection.lua \
+    --from-file=./tokens_cache.lua
+
+Deploy the APICAST Gateway
+
+. Install the `APICast Operator`
+. Generate a token in 3Scale 
+. Create a secret with the generated token 
+
+    oc create secret generic 3scaleportal --from-literal=AdminPortalURL=https://3096735a55cd468878745e424c323c3afdee180cce15e58fea5d7928f6e0605c@3scale-admin.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com
+    # Change line 16 with your route URL
+    oc create -f my-gateway.yml
+
+After you need to restart the gateway to load the changes
+
+    ./redeploy.sh
+
