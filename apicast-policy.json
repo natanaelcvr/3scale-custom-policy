@@ -1,7 +1,7 @@
 {
   "$schema": "http://apicast.io/poolicy-v1/schema#manifest#",
-  "name": "JWE Token Instroepction",
-  "summary": "JWE Token Instroepction policy",
+  "name": "JWE Introspection Policy",
+  "summary": "JWE Introspection Policy",
   "description": ["This policy executes OAuth 2.0 Token Introspection ",
     "(https://tools.ietf.org/html/rfc7662) for every API call."
   ],
