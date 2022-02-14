@@ -19,13 +19,26 @@ Deploy the APICAST Gateway
 . Generate a token in 3Scale 
 . Create a secret with the generated token 
 
-    oc create secret generic 3scaleportal --from-literal=AdminPortalURL=https://3096735a55cd468878745e424c323c3afdee180cce15e58fea5d7928f6e0605c@3scale-admin.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com
+    oc create secret generic 3scaleportal --from-literal=AdminPortalURL=https://f6d72b42f17dd38113af394404524febbe0903c4205740f8d0b5d3760151312b@3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com
     # Change line 16 with your route URL
     oc create -f my-gateway.yml
+
+Update the product staging gateway url to
+
+    https://api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com:443
 
 After you need to restart the gateway to load the changes
 
     ./redeploy.sh
+
+== Deploy the police into the APICast policy registry
+
+    cd policy
+    TOKEN=f6d72b42f17dd38113af394404524febbe0903c4205740f8d0b5d3760151312b
+    TSCALE_URL=3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com
+    curl -v -X POST -u ":$TOKEN" -H "Content-Type: application/json" \
+        -d @apicast-policy.json \
+        https://$TSCALE_URL/admin/api/registry/policies.json
 
 Useful links:
 

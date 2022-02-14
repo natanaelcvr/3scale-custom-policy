@@ -63,19 +63,19 @@
 				"header": [
 					{
 						"key": "user_key",
-						"value": "a4aaccdde86abbbb7ee97be937002382",
+						"value": "fc82f1bcae95a752bd7e292469907186",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://api-3scale-apicast-gateway.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com:443/read",
+					"raw": "https://api-3scale-apicast-staging.apps.cluster-b851.b851.sandbox243.opentlc.com:443/read",
 					"protocol": "https",
 					"host": [
-						"api-3scale-apicast-gateway",
+						"api-3scale-apicast-staging",
 						"apps",
-						"cluster-a1a6",
-						"a1a6",
-						"sandbox1817",
+						"cluster-b851",
+						"b851",
+						"sandbox243",
 						"opentlc",
 						"com"
 					],
@@ -86,96 +86,7 @@
 					"query": [
 						{
 							"key": "user_key",
-							"value": "1d00bb165953fcbf4ed9a923a2e3ccb7",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET write",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "clientSecret",
-							"value": "ca7c64e5a3d9f852e883235b6b6d7bf6",
-							"type": "string"
-						},
-						{
-							"key": "clientId",
-							"value": "4053a571",
-							"type": "string"
-						},
-						{
-							"key": "accessTokenUrl",
-							"value": "https://keycloak-3scale.apps.cluster-6792.6792.sandbox261.opentlc.com/auth/realms/3scale/protocol/openid-connect/token",
-							"type": "string"
-						},
-						{
-							"key": "authUrl",
-							"value": "https://keycloak-3scale.apps.cluster-6792.6792.sandbox261.opentlc.com/auth/realms/3scale/protocol/openid-connect/auth",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						},
-						{
-							"key": "tokenName",
-							"value": "3scale-oidc",
-							"type": "string"
-						},
-						{
-							"key": "redirect_uri",
-							"value": "https://openidconnect.net/callback",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "user_key",
-						"value": "a4aaccdde86abbbb7ee97be937002382",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://api-3scale-apicast-gateway.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com:443/write",
-					"protocol": "https",
-					"host": [
-						"api-3scale-apicast-gateway",
-						"apps",
-						"cluster-a1a6",
-						"a1a6",
-						"sandbox1817",
-						"opentlc",
-						"com"
-					],
-					"port": "443",
-					"path": [
-						"write"
-					],
-					"query": [
-						{
-							"key": "user_key",
-							"value": "1d00bb165953fcbf4ed9a923a2e3ccb7",
+							"value": "fc82f1bcae95a752bd7e292469907186",
 							"disabled": true
 						}
 					]
@@ -241,32 +152,25 @@
 				"header": [
 					{
 						"key": "user_key",
-						"value": "a4aaccdde86abbbb7ee97be937002382",
+						"value": "fc82f1bcae95a752bd7e292469907186",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "https://api-3scale-apicast-gateway.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com:443/write",
+					"raw": "https://api-3scale-apicast-staging.apps.cluster-b851.b851.sandbox243.opentlc.com:443/write",
 					"protocol": "https",
 					"host": [
-						"api-3scale-apicast-gateway",
+						"api-3scale-apicast-staging",
 						"apps",
-						"cluster-a1a6",
-						"a1a6",
-						"sandbox1817",
+						"cluster-b851",
+						"b851",
+						"sandbox243",
 						"opentlc",
 						"com"
 					],
 					"port": "443",
 					"path": [
 						"write"
-					],
-					"query": [
-						{
-							"key": "user_key",
-							"value": "1d00bb165953fcbf4ed9a923a2e3ccb7",
-							"disabled": true
-						}
 					]
 				}
 			},

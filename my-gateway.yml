@@ -13,7 +13,7 @@ spec:
   extendedMetrics: true
   deploymentEnvironment: staging
   exposedHost:
-    host: api-3scale-apicast-gateway.apps.cluster-a1a6.a1a6.sandbox1817.opentlc.com
+    host: api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com
     tls:
     - {}
   customPolicies:
