@@ -27,6 +27,11 @@ After you need to restart the gateway to load the changes
 
     ./redeploy.sh
 
+Useful links:
+
+https://github.com/3scale/APIcast/blob/master/doc/policies.md
+
+
 == Testing
 
 Import the `bb.postman_collection.json` into POSTMAN.
@@ -34,3 +39,16 @@ Import the `bb.postman_collection.json` into POSTMAN.
 Use the following JWE token to do tests
 
     RTq4M4kOOgyfAIYLSaEWQ1gGtcq-ur3_HaEqunBdfi1ax2G0Ng183aJmwyGCtEGJsAxPplQwA8X2a2E8tDO9yA.7UxoQ1ncKPL5J-RIkSWrlAqPZ411on9sLNc1rPYnKa0gXjZhiCBUVB7-V9CpRnCmqTQr2-AONKDCctV_yM6Ghoh1wxb7LvVzzi0iHEj_BX2tHNxMZpqk7rnsoUer_iM0_DLZJC7nqo65ah5wyfZgCGJzEZ5dpj01jLcuJZts0eRrWjdsZf4pL6iGFdZWddqldkHqu1ufgRDxRWYRUOf0EtxjFnhuOy0vYEEzEsnJAW05HFDB5411687KypOaWi5gHoRpnThs4EsQc3vWyofBYp0_kHBBfRwU1MNNY_73UEMwAao3r0AtFCzzi9AOhaJNzttAbGQyHLOrw3luHGWhoPmVMYhatkiyPnWDJNo7zJkF09XsGF2EQbVhpojH1mzEnOHWh2GpQSShoJytZPXmmCTkyX1Sz2dUuDdhZlWZNvr-MNrd3LPPsTDJ6KxDSe2Za_qpqm2Kjn0CxQEe40_h81Yze1fwNulz7ldn1TMADicsv0KHe08Nld5rJTCdLit6NCl2E7i-Zv16Fs5gcg6j72e0phKZyUJBHqJHF14yhLvv-IFV5FWmvEhIqksaGxOHp40wY8Du_JQDAM3KuI_nRKwjfCBwNgolY_xknoGERN8e4b05yOJmDEDalJhlpGjn5Y7yoeWQofBH_dtQMgeKJGe956LgNYUkwnpJPfeRwA4SYgzVzbrwOekJbe1opJh15qyfm54dB99KWMlNgQPdht8DEHoXcTa2-y5knflwhVsVX928-3bPuu2nUTJA5Y0KnN3zOJ3tjQYu8iM1vsRkUYsx-sF3DCqls5NOPzItLv0aluBtJBacF12qviT0XzZVJwlQO5XBR83BLHU4aWxbHtZCCieHVgdqZvV4L1UUNDny3hJ19WMaBHJBk9-w5z7zF11cuMC17c_DhQW22Ihvflnekwlr5wLoubMNN-hd0fFtqsQ3O_MB-O8k6LoRUmSTLf6X5Vu7s07HpKvE1AkhJJQv4fFwOp-ZPSXlM6mMMJQxT-m5tgSGhWAhm5mP24zbwvSuGg_7Jyocj-eeuCzewQ.jKINuYmO3SIsPFhOsnukJG3tHuBgDQey4QUXG7VYByhTVaIenfFFTA9IoX63LWyEarCE2NJ7Q7jtQMhAlMzRSA
+
+
+== Cluster Credentials
+
+https://console-openshift-console.apps.cluster-b851.b851.sandbox243.opentlc.com[Openshift URL]
+
+username: `opentlc-mgr`
+
+https://3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com[3Scale]
+
+user: `admin`
+
+password: `kM5lZgBr`
