@@ -7,11 +7,20 @@ image::imgs/policy-flow.jpg[]
 
 == Policy Deployment
 
-oc create secret generic jwe-token-introspection \
-    --from-file=./apicast-policy.json \
-    --from-file=./init.lua \
-    --from-file=./jwe-token-introspection.lua \
-    --from-file=./tokens_cache.lua
+JWE Token Instrospect
+
+    oc create secret generic jwe-token-introspection \
+        --from-file=./apicast-policy.json \
+        --from-file=./init.lua \
+        --from-file=./jwe-token-introspection.lua \
+        --from-file=./tokens_cache.lua
+
+Claim Check 
+
+    oc create secret generic jwe-claim-check \
+        --from-file=./apicast-policy.json \
+        --from-file=./init.lua \
+        --from-file=./jwt_claim_check.lua
 
 Deploy the APICAST Gateway
 
