@@ -17,7 +17,11 @@ spec:
     tls:
     - {}
   customPolicies:
-    - name: JWE Introspection Policy
+    - name: JWEIntrospectionPolicy
       version: "0.1"
       secretRef:
         name: jwe-token-introspection
+    - name: JWTClaimCheck
+      version: "0.1"
+      secretRef:
+        name: jwe-claim-check
