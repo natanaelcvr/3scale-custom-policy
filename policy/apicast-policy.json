@@ -1,8 +1,8 @@
 {
-  "name": "JWE Introspection Policy",
+  "name": "JWEIntrospectionPolicy",
   "version": "0.1",
   "schema" : {
-    "name" :"JWE Introspection Policy",
+    "name" :"JWEIntrospectionPolicy",
     "version" : "0.1",
     "$schema" : "http://apicast.io/policy-v1/schema#manifest#",
     "summary" : "This policy executes OAuth 2.0 Token Introspection using JWE",
