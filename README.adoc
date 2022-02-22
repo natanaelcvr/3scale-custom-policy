@@ -1,7 +1,7 @@
-= JWE Token Instrospection Policy
+= Token Instrospection Policy
 
-This policy, call the instrospection policy, take the result, convert to JWT and put it in the context.
-It allows you to play with others builtin policies like Claim Check.
+This policy, call the instrospection policy, take the result, put it in the context.
+It enables the policy to work with others builtin policies like Claim Check.
 
 image::imgs/policy-flow.jpg[]
 
