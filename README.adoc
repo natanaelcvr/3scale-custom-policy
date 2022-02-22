@@ -4,17 +4,17 @@
 
 In the use case that you need to filter requests based on a JWT role.
 
-[cols="1,1"]
+[cols="1,1,1"]
 |===
-|Method Type, row 1 
+|Method Type
 |GET
 |POST
 
-|Mapping Rule, row 2
+|Mapping Rule
 |/read
 |/write
 
-|Role, row 3
+|Role
 |reader
 |writer
 |=== 
