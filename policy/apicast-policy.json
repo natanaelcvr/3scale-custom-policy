@@ -10,6 +10,11 @@
     "configuration": {
       "type": "object",
       "properties": {
+        "error_message": {
+          "title": "Error message",
+          "description": "Error message to show to user when traffic is blocked",
+          "type": "string"
+        },
         "auth_type": {
           "type": "string",
           "enum": ["use_3scale_oidc_issuer_endpoint", "client_id+client_secret"],
@@ -63,6 +68,89 @@
               "client_id", "client_secret", "introspection_url"
             ]
           }]
+        }
+      },
+      "rules": {
+        "type": "array",
+        "items": {
+          "required": [
+            "resource"
+          ],
+          "properties": {
+            "combine_op": {
+              "type": "string",
+              "enum": ["and", "or"],
+              "default": "and"
+            },
+            "methods": {
+              "description": "Allowed methods",
+              "type": "array",
+              "default": ["ANY"],
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ANY",
+                  "GET",
+                  "HEAD",
+                  "POST",
+                  "PUT",
+                  "DELETE",
+                  "PATCH",
+                  "OPTIONS",
+                  "TRACE",
+                  "CONNECT"
+                ]
+              }
+            },
+            "resource": {
+              "type": "string",
+              "description": "Resource controlled by the rule. This is the same format as Mapping Rules. This matches from the beginning of the string and to make an exact match you need to use '$' at the end."
+            },
+            "resource_type": {
+              "description": "How to evaluate 'resource' field",
+              "$ref": "#/definitions/value_type"
+            },
+            "operations": {
+              "description": "Operations to perform the condition",
+              "type": "array",
+              "items": {
+                "required": [
+                  "jwt_claim",
+                  "jwt_claim_type",
+                  "op",
+                  "value"
+                ],
+                "type": "object",
+                "properties": {
+                  "jwt_claim": {
+                    "description": "String to get JWT claim", 
+                    "type": "string"
+                  },
+                  "jwt_claim_type": {
+                    "description": "How to evaluate 'jwt_claim' value",
+                    "$ref": "#/definitions/value_type"
+                  },
+                  "op": {
+                    "description": "Match operation to compare JWT claim with the provided value. In case that a not a number is in use in numeric comparison, the value will be transformed to 0.",
+                    "type": "string",
+                    "enum": [
+                      "==",
+                      "!=",
+                      "matches"
+                    ]
+                  },
+                  "value": {
+                    "description": "Value to compare the retrieved JWT claim",
+                    "type": "string"
+                  },
+                  "value_type": {
+                    "description": "How to evaluate 'value' field",
+                    "$ref": "#/definitions/value_type"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

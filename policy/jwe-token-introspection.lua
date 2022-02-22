@@ -56,7 +56,7 @@ end
 
 --- OAuth 2.0 Token Introspection defined in RFC7662.
 -- https://tools.ietf.org/html/rfc7662
-local function introspect_token(self, token)
+local function introspect_token(context, self, token)
   local cached_token_info = self.tokens_cache:get(token)
   if cached_token_info then return cached_token_info end
 
@@ -71,6 +71,7 @@ local function introspect_token(self, token)
 
   if res.status == 200 then
     local token_info, decode_err = cjson.decode(res.body)
+    context.jwt = token_info
     if type(token_info) == 'table' then
       self.tokens_cache:set(token, token_info)
       return token_info
@@ -102,15 +103,12 @@ function _M:access(context)
     local access_token = authorization.token
     --- Introspection Response must have an "active" boolean value.
     -- https://tools.ietf.org/html/rfc7662#section-2.2
-    if not introspect_token(self, access_token).active == true then
+    if not introspect_token(context, self, access_token).active == true then
       ngx.log(ngx.INFO, 'token introspection for access token ', access_token, ': token not active')
       ngx.status = context.service.auth_failed_status
       ngx.say(context.service.error_auth_failed)
       return ngx.exit(ngx.status)
     end
-
-    ngx.log(ngx.INFO, 'hello do ramalho setando uma variavel no contexto')
-    context.jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAgICJhY3RpdmUiOiB0cnVlLCAgICJzZXJ2ZXJfaW5mbyI6IHsgICAgICAgImlkX3NlcnZpZG9yIjogImR4bDFvYXQwMDAwOF9vYXQtc2Vydmlkb3ItYXV0b3JpemFjYW8tMiIsICAgICAgICJ2ZXJzaW9uIjogIjEuMTEuMzQuMi1TTkFQU0hPVCIsICAgICAgICJpcCI6ICJkeGwxb2F0MDAwMDguZGlzcG9zaXRpdm9zLmJiLmNvbS5ici8xNzIuMjAuMjQ0LjMiICAgfSwgICAiaXNzIjogImh0dHBzOi8vb2F1dGguYmIuY29tLmJyL29hdXRoIiwgICAianRpIjogIjZkZmVlZjUyLWU0ZGItNDBjYS05ODYxLTE0YjBhYWJlYWY3ZCIsICAgImNsaWVudF9pZCI6ICJleUpwWkNJNkltVXhZMkUxTURJdE1qVWlMQ0pqYjJScFoyOVFkV0pzYVdOaFpHOXlJam93TENKamIyUnBaMjlUYjJaMGQyRnlaU0k2TWpBeExDSnpaWEYxWlc1amFXRnNTVzV6ZEdGc1lXTmhieUk2TlRGOSIsICAgImlhdCI6IDE2NDI2MDMzMDEwMDEsICAgImV4cCI6IDI2NDI2MDMzMDAwMDEsICAgImdyYW50X3R5cGUiOiAiY2xpZW50X2NyZWRlbnRpYWxzIiwgICAic3ViIjogImV5SnBaQ0k2SW1VeFkyRTFNREl0TWpVaUxDSmpiMlJwWjI5UWRXSnNhV05oWkc5eUlqb3dMQ0pqYjJScFoyOVRiMlowZDJGeVpTSTZNakF4TENKelpYRjFaVzVqYVdGc1NXNXpkR0ZzWVdOaGJ5STZOVEY5IiwgICAiYXVkIjogImh0dHBzOi8vb2F1dGguYmIuY29tLmJyL29hdXRoIGh0dHBzOi8vYXBpLmJiLmNvbS5ici8iLCAgICJzY29wZSI6ICJiYi5hcGktcHJpdmF0aXZhLnJlc3RyaXRhLmFyaCBlbWFpbCBjcGYiLCAgICJzZWNyZXRfZmllbGRzIjoge30sICAgInB1YmxpY19maWVsZHMiOiB7ICAgICAgICJjb2RpZ29fcHVibGljYWRvciI6ICIxNzY5ODkwOTkiLCAgICAgICAiY2lkIjogIjIwMjIwMTE5MTE0MTQxLTk4YTljYTRjLTY5ZmItNGRhZS04MzBmLWVmNGVmMGI1ZTgxNyIgICB9fQ==.jKINuYmO3SIsPFhOsnukJG3tHuBgDQey4QUXG7VYByhTVaIenfFFTA9IoX63LWyEarCE2NJ7Q7jtQMhAlMzRSA'
   end
 end
 
