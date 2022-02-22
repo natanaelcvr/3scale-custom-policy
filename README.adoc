@@ -1,9 +1,41 @@
-= Token Instrospection Policy
+= Token Introspection Policy
 
-This policy, call the instrospection policy, take the result, put it in the context.
-It enables the policy to work with others builtin policies like Claim Check.
+== Context
+
+In the use case that you need to filter requests based on a JWT role.
+
+[cols="1,1"]
+|===
+|Method Type, row 1 
+|GET
+|POST
+
+|Mapping Rule, row 2
+|/read
+|/write
+
+|Role, row 3
+|reader
+|writer
+|=== 
+
+The usage of the https://github.com/3scale/APIcast/tree/master/gateway/src/apicast/policy/jwt_claim_check[JWT Claim Check Policy] works well, but just in case if you set up your Product API to use OIDC authentication. 
+
+image::imgs/product-authentication.png[]
+
+But there are some corner cases that it doesn't work, like when you need to use another authentication method, or a mix of authentication methods, let me clarify.
+
+I see a case in a customer that they want to use more than one authentication method, like API KEY and OIDC.
+You can easily achieve it by setting the Product authentication method to API Key and combining the policies JWT Token Introspect and JWT Claim Check. Still, as I mentioned before it currently doesn't work because the JWT Token Introspection policy doesn't put the JWT token in the context, so the JWT Claim check doesn't work.
+
+So basically, what this policy improves in the currently JWT Token Introspection policy because it puts the JWT token information in the Nginx context, allowing the Claim Check policy to work independently of the authentication method set.
 
 image::imgs/policy-flow.jpg[]
+
+image::auth-user-key.png[]
+
+image::policy-chain.png[]
+
 
 == Policy Deployment using an APICast gateway directly in Openshift
 
@@ -45,7 +77,11 @@ Update the product staging gateway url to
 
     https://api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com:443
 
-After you need to restart the gateway to load the changes
+=== Updating the policy 
+
+To update the Policy, you need to recreate the secret and restart the gateway. 
+
+I make a script to make it easy, you can just run it everytime you need to deploy the new changes:
 
     ./redeploy.sh
 
