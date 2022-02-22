@@ -6,16 +6,13 @@ In the use case that you need to filter requests based on a JWT role.
 
 [cols="1,1,1"]
 |===
-|Method Type
+|Method Type | Mapping Rule | Role
 |GET
-|POST
-
-|Mapping Rule
 |/read
-|/write
-
-|Role
 |reader
+
+|POST
+|/write
 |writer
 |=== 
 
