@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "0109a3cd-b274-43c5-9375-87cff11cc0f4",
-		"name": "Banco do Brasil",
+		"name": "BB",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -23,24 +23,39 @@
 					"type": "oauth2",
 					"oauth2": [
 						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJFRmJpRWVfTzVWRHRObGxldkdZZWNGR2U4M09YUmkzdlJZdXl6ME81azdFIn0.eyJleHAiOjE2NDU0Njc0OTksImlhdCI6MTY0NTQ2NzQzOSwiYXV0aF90aW1lIjoxNjQ1NDY2NTU3LCJqdGkiOiIxZDI0MmVhZS05MTJlLTRkYzctODYxMC01ZmNhNDQwNzc1ZDYiLCJpc3MiOiJodHRwczovL2tleWNsb2FrLTNzY2FsZS5hcHBzLmNsdXN0ZXItYjg1MS5iODUxLnNhbmRib3gyNDMub3BlbnRsYy5jb20vYXV0aC9yZWFsbXMvbWFzdGVyIiwiYXVkIjpbIm1hc3Rlci1yZWFsbSIsImFjY291bnQiXSwic3ViIjoiNGM2ZWRkNmYtZmMxZi00NThhLWE3N2YtYjk2NDg4NmUxNGUyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiNDA5Mzc4NjMiLCJzZXNzaW9uX3N0YXRlIjoiNWU1YWI4ZDAtODQ1Yi00M2YwLWEyNjQtNDBiMzgwODNlOGZmIiwiYWNyIjoiMCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJjcmVhdGUtcmVhbG0iLCJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwiYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7Im1hc3Rlci1yZWFsbSI6eyJyb2xlcyI6WyJ2aWV3LXJlYWxtIiwidmlldy1pZGVudGl0eS1wcm92aWRlcnMiLCJtYW5hZ2UtaWRlbnRpdHktcHJvdmlkZXJzIiwiaW1wZXJzb25hdGlvbiIsImNyZWF0ZS1jbGllbnQiLCJtYW5hZ2UtdXNlcnMiLCJxdWVyeS1yZWFsbXMiLCJ2aWV3LWF1dGhvcml6YXRpb24iLCJxdWVyeS1jbGllbnRzIiwicXVlcnktdXNlcnMiLCJtYW5hZ2UtZXZlbnRzIiwibWFuYWdlLXJlYWxtIiwidmlldy1ldmVudHMiLCJ2aWV3LXVzZXJzIiwidmlldy1jbGllbnRzIiwibWFuYWdlLWF1dGhvcml6YXRpb24iLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiNWU1YWI4ZDAtODQ1Yi00M2YwLWEyNjQtNDBiMzgwODNlOGZmIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.DfVhNvSfojmhZBCwxSdsFWZP_Z38RV7WKvaDZbNAaKSy0Uc7kUjK9wjgzD-D86Bwo7lji21qCgivdEzZk_tCGOchTZu-ZElsQWTQ9o9QyY8axobsgS7PJ5SJ4Mj2hj-Gq2y9zHovz-vGH2PTN1X-3OI3TkOJKF5ZsqjV9z0Jy6cAb9JYAAHvw1MnQ1d4ptCffTR9v_69WGCH3OBU2ZVjhhvEzX5Cosg1hnrrphn3Ak_303wRSOvOgc6Fg_4q5AnyF3-vKyqtFzEmKX7Hs8n8N0uaS8GEuUrp97jmTs0AZo0OMGONLyMmI6d0GAxAcY0VURG128dkFnmcWSSXaNsdgw",
+							"type": "string"
+						},
+						{
 							"key": "clientSecret",
-							"value": "ca7c64e5a3d9f852e883235b6b6d7bf6",
+							"value": "e6753a5e9dddf12998e6fd4ecfd7aef7",
 							"type": "string"
 						},
 						{
 							"key": "clientId",
-							"value": "4053a571",
-							"type": "string"
-						},
-						{
-							"key": "accessTokenUrl",
-							"value": "https://keycloak-3scale.apps.cluster-6792.6792.sandbox261.opentlc.com/auth/realms/3scale/protocol/openid-connect/token",
+							"value": "40937863",
 							"type": "string"
 						},
 						{
 							"key": "authUrl",
-							"value": "https://keycloak-3scale.apps.cluster-6792.6792.sandbox261.opentlc.com/auth/realms/3scale/protocol/openid-connect/auth",
+							"value": "https://keycloak-3scale.apps.cluster-b851.b851.sandbox243.opentlc.com/auth/realms/master/protocol/openid-connect/auth",
 							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://keycloak-3scale.apps.cluster-b851.b851.sandbox243.opentlc.com/auth/realms/master/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
 						},
 						{
 							"key": "addTokenTo",
@@ -68,10 +83,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://api-3scale-apicast-staging.apps.cluster-b851.b851.sandbox243.opentlc.com:443/read",
+					"raw": "https://api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com:443/read",
 					"protocol": "https",
 					"host": [
-						"api-3scale-apicast-staging",
+						"api-3scale-apicast-gateway",
 						"apps",
 						"cluster-b851",
 						"b851",
@@ -157,10 +172,10 @@
 					}
 				],
 				"url": {
-					"raw": "https://api-3scale-apicast-staging.apps.cluster-b851.b851.sandbox243.opentlc.com:443/write",
+					"raw": "https://api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com:443/write",
 					"protocol": "https",
 					"host": [
-						"api-3scale-apicast-staging",
+						"api-3scale-apicast-gateway",
 						"apps",
 						"cluster-b851",
 						"b851",

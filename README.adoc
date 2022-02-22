@@ -56,12 +56,9 @@ https://github.com/3scale/APIcast/blob/master/doc/policies.md
 
 == Testing
 
-Import the `bb.postman_collection.json` into POSTMAN.
+Import the `endpoint.postman_collection.json` into POSTMAN.
 
-Use the following JWE token to do tests
-
-    RTq4M4kOOgyfAIYLSaEWQ1gGtcq-ur3_HaEqunBdfi1ax2G0Ng183aJmwyGCtEGJsAxPplQwA8X2a2E8tDO9yA.7UxoQ1ncKPL5J-RIkSWrlAqPZ411on9sLNc1rPYnKa0gXjZhiCBUVB7-V9CpRnCmqTQr2-AONKDCctV_yM6Ghoh1wxb7LvVzzi0iHEj_BX2tHNxMZpqk7rnsoUer_iM0_DLZJC7nqo65ah5wyfZgCGJzEZ5dpj01jLcuJZts0eRrWjdsZf4pL6iGFdZWddqldkHqu1ufgRDxRWYRUOf0EtxjFnhuOy0vYEEzEsnJAW05HFDB5411687KypOaWi5gHoRpnThs4EsQc3vWyofBYp0_kHBBfRwU1MNNY_73UEMwAao3r0AtFCzzi9AOhaJNzttAbGQyHLOrw3luHGWhoPmVMYhatkiyPnWDJNo7zJkF09XsGF2EQbVhpojH1mzEnOHWh2GpQSShoJytZPXmmCTkyX1Sz2dUuDdhZlWZNvr-MNrd3LPPsTDJ6KxDSe2Za_qpqm2Kjn0CxQEe40_h81Yze1fwNulz7ldn1TMADicsv0KHe08Nld5rJTCdLit6NCl2E7i-Zv16Fs5gcg6j72e0phKZyUJBHqJHF14yhLvv-IFV5FWmvEhIqksaGxOHp40wY8Du_JQDAM3KuI_nRKwjfCBwNgolY_xknoGERN8e4b05yOJmDEDalJhlpGjn5Y7yoeWQofBH_dtQMgeKJGe956LgNYUkwnpJPfeRwA4SYgzVzbrwOekJbe1opJh15qyfm54dB99KWMlNgQPdht8DEHoXcTa2-y5knflwhVsVX928-3bPuu2nUTJA5Y0KnN3zOJ3tjQYu8iM1vsRkUYsx-sF3DCqls5NOPzItLv0aluBtJBacF12qviT0XzZVJwlQO5XBR83BLHU4aWxbHtZCCieHVgdqZvV4L1UUNDny3hJ19WMaBHJBk9-w5z7zF11cuMC17c_DhQW22Ihvflnekwlr5wLoubMNN-hd0fFtqsQ3O_MB-O8k6LoRUmSTLf6X5Vu7s07HpKvE1AkhJJQv4fFwOp-ZPSXlM6mMMJQxT-m5tgSGhWAhm5mP24zbwvSuGg_7Jyocj-eeuCzewQ.jKINuYmO3SIsPFhOsnukJG3tHuBgDQey4QUXG7VYByhTVaIenfFFTA9IoX63LWyEarCE2NJ7Q7jtQMhAlMzRSA
-
+Remember to update the token with a valid one. 
 
 == Cluster Credentials
 
@@ -73,4 +70,55 @@ https://3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com[3Scale]
 
 user: `admin`
 
-password: `kM5lZgBr`
+== Keycloak 
+
+user: `admin`
+
+=== Keycloak & 3Scale Integration 
+
+RHSSO_FQDN=keycloak-3scale.apps.cluster-b851.b851.sandbox243.opentlc.com
+RHSSO_PORT=443
+
+Get Certificate 
+
+    echo -n | openssl s_client -connect $RHSSO_FQDN:$RHSSO_PORT -servername $RHSSO_FQDN -showcerts | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > customCA.pem
+
+Gather the existing content of `the /etc/pki/tls/cert.pem` file on the Zync pod. Run:
+
+    curl -v https://$RHSSO_FQDN/auth/realms/master --cacert customCA.pem
+
+Get ZYNC certificate 
+
+    oc exec zync-que-1-fflqh cat /etc/pki/tls/cert.pem > zync.pem
+
+Append the contents of the custom CA certificate file to zync.pem:
+
+    cat customCA.pem >> zync.pem
+
+Attach the new file to the Zync pod as ConfigMap:
+
+    oc create configmap zync-ca-bundle --from-file=./zync.pem
+    oc set volume dc/zync-que --add --name=zync-ca-bundle --mount-path /etc/pki/tls/zync/zync.pem --sub-path zync.pem --source='{"configMap":{"name":"zync-ca-bundle","items":[{"key":"zync.pem","path":"zync.pem"}]}}'
+    oc set env dc/zync-que SSL_CERT_FILE=/etc/pki/tls/zync/zync.pem
+
+
+=== Credentials
+
+ClientID: `3scale`
+
+Secret: `4c7f4881-1762-4fe4-820e-eeef76e5bd3b`
+
+user: `ramalho`
+
+pass: `redhat`
+
+OIDC URL `https://3scale:4c7f4881-1762-4fe4-820e-eeef76e5bd3b@keycloak-3scale.apps.cluster-b851.b851.sandbox243.opentlc.com:443/auth/realms/master`
+
+Well Known `https://keycloak-3scale.apps.cluster-b851.b851.sandbox243.opentlc.com:443/auth/realms/master/.well-known/openid-configuration`
+
+Values relative from the application created in 3Scale.
+
+Client ID: `40937863`
+Client Secret: `e6753a5e9dddf12998e6fd4ecfd7aef7`
+
+Token Introspection: `https://keycloak-3scale.apps.cluster-b851.b851.sandbox243.opentlc.com/auth/realms/master/protocol/openid-connect/token/introspect`
