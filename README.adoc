@@ -23,15 +23,15 @@ image::imgs/product-authentication.png[]
 But there are some corner cases that it doesn't work, like when you need to use another authentication method, or a mix of authentication methods, let me clarify.
 
 I see a case in a customer that they want to use more than one authentication method, like API KEY and OIDC.
-You can easily achieve it by setting the Product authentication method to API Key and combining the policies JWT Token Introspect and JWT Claim Check. Still, as I mentioned before it currently doesn't work because the JWT Token Introspection policy doesn't put the JWT token in the context, so the JWT Claim check doesn't work.
+You can easily achieve it by setting the Product authentication method to API Key and combining the policies `JWT Token Introspect` and `JWT Claim Check`. Still, as I mentioned before it currently doesn't work because the `JWT Token Introspection policy` doesn't put the JWT token in the context, so the `JWT Claim check` policy doesn't work.
 
-So basically, what this policy improves in the currently JWT Token Introspection policy because it puts the JWT token information in the Nginx context, allowing the Claim Check policy to work independently of the authentication method set.
+Basically, what this policy improves in the currently JWT Token Introspection policy because it puts the JWT token information in the Nginx context, allowing the Claim Check policy to work independently of the authentication method set.
 
 image::imgs/policy-flow.jpg[]
 
-image::auth-user-key.png[]
+image::imgs/auth-user-key.png[]
 
-image::policy-chain.png[]
+image::imgs/policy-chain.png[]
 
 
 == Policy Deployment using an APICast gateway directly in Openshift
