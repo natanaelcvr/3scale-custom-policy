@@ -91,6 +91,10 @@ I make a script to make it easy, you can just run it everytime you need to deplo
         -d @apicast-policy.json \
         https://$TSCALE_URL/admin/api/registry/policies.json
 
+After you should see the new policy in the policy list.
+
+image::imgs/policy-list.png[]
+
 Useful links:
 
 https://github.com/3scale/APIcast/blob/master/doc/policies.md
