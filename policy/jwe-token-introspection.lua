@@ -101,6 +101,11 @@ function _M:access(context)
   if self.introspection_url then
     local authorization = http_authorization.new(ngx.var.http_authorization)
     local access_token = authorization.token
+
+    if not authorization.token then
+      return ngx.exit(ngx.HTTP_OK)
+    end
+
     --- Introspection Response must have an "active" boolean value.
     -- https://tools.ietf.org/html/rfc7662#section-2.2
     if not introspect_token(context, self, access_token).active == true then
