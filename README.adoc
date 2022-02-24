@@ -27,7 +27,7 @@ You can easily achieve it by setting the Product authentication method to API Ke
 
 Basically, what this policy improves in the currently JWT Token Introspection policy because it puts the JWT token information in the Nginx context, allowing the Claim Check policy to work independently of the authentication method set.
 
-image::imgs/policy-flow.jpg[]
+image::imgs/policy-flow.png[]
 
 image::imgs/auth-user-key.png[]
 
