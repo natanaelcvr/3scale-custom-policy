@@ -72,6 +72,10 @@ local function introspect_token(context, self, token)
   if res.status == 200 then
     local token_info, decode_err = cjson.decode(res.body)
     context.jwt = token_info
+    ngx.log(ngx.INFO, 'token introspection client_id: ', token_info.client_id)
+
+    ngx.req.set_header('client_id', token_info.client_id)
+
     if type(token_info) == 'table' then
       self.tokens_cache:set(token, token_info)
       return token_info
@@ -84,6 +88,10 @@ local function introspect_token(context, self, token)
     return { active = false }
   end
 end
+
+-- local function send_jwt_param_to_header(opened_token)
+--   headers = {['teste'] = opened_token.client_id}}
+-- end 
 
 function _M:access(context)
   if self.auth_type == "use_3scale_oidc_issuer_endpoint" then
@@ -102,8 +110,10 @@ function _M:access(context)
     local authorization = http_authorization.new(ngx.var.http_authorization)
     local access_token = authorization.token
 
+    ngx.log(ngx.INFO, 'token: ', authorization.token)
+
     if not authorization.token then
-      return ngx.exit(ngx.HTTP_OK)
+      return _M
     end
 
     --- Introspection Response must have an "active" boolean value.
