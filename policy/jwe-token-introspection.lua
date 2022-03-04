@@ -1,5 +1,5 @@
 local policy = require('apicast.policy')
-local _M = policy.new('JWEIntrospectionPolicy')
+local _M = policy.new('JWE Introspection Policy with Header Mods')
 
 local cjson = require('cjson.safe')
 local http_authorization = require 'resty.http_authorization'
@@ -23,6 +23,7 @@ end
 
 function _M.new(config)
   local self = new(config)
+  self.headers = {}
   self.config = config or {}
   self.auth_type = config.auth_type or "client_id+client_secret"
   --- authorization for the token introspection endpoint.
@@ -72,9 +73,9 @@ local function introspect_token(context, self, token)
   if res.status == 200 then
     local token_info, decode_err = cjson.decode(res.body)
     context.jwt = token_info
-    ngx.log(ngx.INFO, 'token introspection client_id: ', token_info.client_id)
+    ngx.log(ngx.INFO, 'token introspection propertie client_id: ', token_info.client_id)
 
-    ngx.req.set_header('client_id', token_info.client_id)
+    ngx.req.set_header('Authorization', 'bearer ' .. token_info.client_id)
 
     if type(token_info) == 'table' then
       self.tokens_cache:set(token, token_info)

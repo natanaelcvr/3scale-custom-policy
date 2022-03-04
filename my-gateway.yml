@@ -13,15 +13,11 @@ spec:
   extendedMetrics: true
   deploymentEnvironment: staging
   exposedHost:
-    host: api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com
+    host: apicast-bb-labs.apps.wkshop.rhbr-lab.com
     tls:
     - {}
   customPolicies:
-    - name: JWEIntrospectionPolicy
+    - name: "JWE Introspection Policy with Header Mods"
       version: "0.1"
       secretRef:
         name: jwe-token-introspection
-    - name: JWTClaimCheck
-      version: "0.1"
-      secretRef:
-        name: jwe-claim-check

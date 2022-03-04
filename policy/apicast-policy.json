@@ -1,8 +1,8 @@
 {
-  "name": "JWEIntrospectionPolicy",
+  "name": "JWE Introspection Policy with Header Mods",
   "version": "0.1",
   "schema" : {
-    "name" :"JWEIntrospectionPolicy",
+    "name" :"JWE Introspection Policy with Header Mods",
     "version" : "0.1",
     "$schema" : "http://apicast.io/policy-v1/schema#manifest#",
     "summary" : "This policy executes OAuth 2.0 Token Introspection using JWE",
@@ -10,6 +10,21 @@
     "configuration": {
       "type": "object",
       "properties": {
+        "headers": {
+          "description": "Import properties from JWT token to headers",
+          "type": "array",
+          "items": {
+            "required": [
+              "jwt_propertie"
+            ],
+            "properties": {
+              "jwt_propertie": {
+                "description": "JWT Propertie name that will be inserted in request header",
+                "type": "string"
+              }
+            }
+          }
+        },
         "auth_type": {
           "type": "string",
           "enum": ["use_3scale_oidc_issuer_endpoint", "client_id+client_secret"],
