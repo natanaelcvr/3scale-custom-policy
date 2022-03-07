@@ -44,12 +44,6 @@ JWE Token Instrospect
         --from-file=./jwe-token-introspection.lua \
         --from-file=./tokens_cache.lua
 
-Claim Check 
-
-    oc create secret generic jwe-claim-check \
-        --from-file=./apicast-policy.json \
-        --from-file=./init.lua \
-        --from-file=./jwt_claim_check.lua
 
 To be able to use the custom policy you need a custom APIcast. 
 
@@ -66,13 +60,13 @@ image::imgs/generate-token-03.png[]
 
 . Create a secret with the generated token 
 
-    oc create secret generic 3scaleportal --from-literal=AdminPortalURL=https://f6d72b42f17dd38113af394404524febbe0903c4205740f8d0b5d3760151312b@3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com
+    oc create secret generic 3scaleportal --from-literal=AdminPortalURL=https://98a4393b7cf5659d6e7fc04b7511adf566db15771820de303c48275deeb0b1ec@3scale-admin.apps.wkshop.rhbr-lab.com
     # Change line 16 with your route URL
     oc create -f my-gateway.yml
 
 Update the product staging gateway url to
 
-    https://api-3scale-apicast-gateway.apps.cluster-b851.b851.sandbox243.opentlc.com:443
+    https://apicast-bb-labs.apps.wkshop.rhbr-lab.com:443
 
 === Updating the policy 
 
@@ -84,13 +78,9 @@ I make a script to make it easy, you can just run it everytime you need to deplo
 
 === Deploy the police into the APICast policy registry
 
-eyJpZCI6ImViZmU0MWMtOTE3My00NWRkLTkiLCJjb2RpZ29QdWJsaWNhZG9yIjowLCJjb2RpZ29Tb2Z0d2FyZSI6NDQ0LCJzZXF1ZW5jaWFsSW5zdGFsYWNhbyI6MX0
-eyJpZCI6IjM4NjY4YTEtNmRhNC00YTRkLTk4IiwiY29kaWdvUHVibGljYWRvciI6MCwiY29kaWdvU29mdHdhcmUiOjQ0NCwic2VxdWVuY2lhbEluc3RhbGFjYW8iOjEsInNlcXVlbmNpYWxDcmVkZW5jaWFsIjoxLCJhbWJpZW50ZSI6ImRlc2Vudm9sdmltZW50byIsImlhdCI6MTUyMDM2NDY2NTIyMX0
-https://oauth.desenv.bb.com.br/oauth/introspect
-
     cd policy
-    TOKEN=f6d72b42f17dd38113af394404524febbe0903c4205740f8d0b5d3760151312b
-    TSCALE_URL=3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com
+    TOKEN=98a4393b7cf5659d6e7fc04b7511adf566db15771820de303c48275deeb0b1ec
+    TSCALE_URL=3scale-admin.apps.wkshop.rhbr-lab.com
     curl -v -X POST -u ":$TOKEN" -H "Content-Type: application/json" \
         -d @apicast-policy.json \
         https://$TSCALE_URL/admin/api/registry/policies.json
@@ -115,11 +105,11 @@ Remember to update the token with a valid one.
 
 == Cluster Credentials
 
-https://console-openshift-console.apps.cluster-b851.b851.sandbox243.opentlc.com[Openshift URL]
+https://console-openshift-console.apps.wkshop.rhbr-lab.com[Openshift URL]
 
 username: `opentlc-mgr`
 
-https://3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com[3Scale]
+https://3scale-admin.apps.wkshop.rhbr-lab.com[3Scale]
 
 user: `admin`
 

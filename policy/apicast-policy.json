@@ -10,21 +10,6 @@
     "configuration": {
       "type": "object",
       "properties": {
-        "headers": {
-          "description": "Import properties from JWT token to headers",
-          "type": "array",
-          "items": {
-            "required": [
-              "jwt_propertie"
-            ],
-            "properties": {
-              "jwt_propertie": {
-                "description": "JWT Propertie name that will be inserted in request header",
-                "type": "string"
-              }
-            }
-          }
-        },
         "jwt_param": {
           "description": "jwt propertie to replace request header Authorization propertie",
           "type": "string"
