@@ -84,6 +84,10 @@ I make a script to make it easy, you can just run it everytime you need to deplo
 
 === Deploy the police into the APICast policy registry
 
+eyJpZCI6ImViZmU0MWMtOTE3My00NWRkLTkiLCJjb2RpZ29QdWJsaWNhZG9yIjowLCJjb2RpZ29Tb2Z0d2FyZSI6NDQ0LCJzZXF1ZW5jaWFsSW5zdGFsYWNhbyI6MX0
+eyJpZCI6IjM4NjY4YTEtNmRhNC00YTRkLTk4IiwiY29kaWdvUHVibGljYWRvciI6MCwiY29kaWdvU29mdHdhcmUiOjQ0NCwic2VxdWVuY2lhbEluc3RhbGFjYW8iOjEsInNlcXVlbmNpYWxDcmVkZW5jaWFsIjoxLCJhbWJpZW50ZSI6ImRlc2Vudm9sdmltZW50byIsImlhdCI6MTUyMDM2NDY2NTIyMX0
+https://oauth.desenv.bb.com.br/oauth/introspect
+
     cd policy
     TOKEN=f6d72b42f17dd38113af394404524febbe0903c4205740f8d0b5d3760151312b
     TSCALE_URL=3scale-admin.apps.cluster-b851.b851.sandbox243.opentlc.com

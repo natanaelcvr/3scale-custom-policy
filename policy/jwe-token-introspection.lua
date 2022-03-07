@@ -26,6 +26,7 @@ function _M.new(config)
   self.headers = {}
   self.config = config or {}
   self.auth_type = config.auth_type or "client_id+client_secret"
+  self.header_param = config.jwt_param
   --- authorization for the token introspection endpoint.
   -- https://tools.ietf.org/html/rfc7662#section-2.2
   if self.auth_type == "client_id+client_secret" then
@@ -73,9 +74,9 @@ local function introspect_token(context, self, token)
   if res.status == 200 then
     local token_info, decode_err = cjson.decode(res.body)
     context.jwt = token_info
-    ngx.log(ngx.INFO, 'token introspection propertie client_id: ', token_info.client_id)
+    ngx.log(ngx.INFO, 'token introspection JWE propertie: ', token_info[self.header_param])
 
-    ngx.req.set_header('Authorization', 'bearer ' .. token_info.client_id)
+    ngx.req.set_header('Authorization', 'bearer ' .. token_info[self.header_param])
 
     if type(token_info) == 'table' then
       self.tokens_cache:set(token, token_info)

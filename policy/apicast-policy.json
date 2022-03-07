@@ -25,6 +25,10 @@
             }
           }
         },
+        "jwt_param": {
+          "description": "jwt propertie to replace request header Authorization propertie",
+          "type": "string"
+        },
         "auth_type": {
           "type": "string",
           "enum": ["use_3scale_oidc_issuer_endpoint", "client_id+client_secret"],
